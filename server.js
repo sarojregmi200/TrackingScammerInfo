@@ -35,11 +35,12 @@ app.get("/", async (req, res) => {
       if (err) {
         console.error("Error writing to log file:", err);
       } else {
-        console.log("Visitor information logged.");
+        console.log("You don't have correct information to access the files.");
       }
     });
 
-    res.status(200).send("Visitor information logged.");
+    const responseHtml = await fs.readFile("./index.html", "utf-8");
+    res.status(200).send(responseHtml);
   } catch (error) {
     console.error("Error processing request:", error);
     res.status(500).send("Error processing request.");
