@@ -41,7 +41,7 @@ app.get("/", async (req, res) => {
       }
     });
 
-    const responseHtml = await fs.readFile("./index.html", "utf-8");
+    const responseHtml = await fs.readFile("./response.html", "utf-8");
     res.status(200).send(responseHtml);
   } catch (error) {
     console.error("Error processing request:", error);
