@@ -31,6 +31,8 @@ app.get("/", async (req, res) => {
       -----------------------------------
     `;
 
+    console.log(logEntry);
+
     fs.appendFile("./log.md", logEntry, (err) => {
       if (err) {
         console.error("Error writing to log file:", err);
