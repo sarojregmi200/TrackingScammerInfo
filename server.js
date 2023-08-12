@@ -13,12 +13,15 @@ app.get("/", async (req, res) => {
     const userAgent = useragent.parse(req.headers["user-agent"]);
     const ipAddress = await publicIpv4();
     const timestamp = new Date().toISOString();
+
+    const clientIpAddress = req.ip;
     const data = {
       timestamp,
       browser: userAgent.toAgent(),
       system: `${userAgent.os.toString()} ${userAgent.os.version}`,
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       ipAddress,
+      clientIpAddress,
     };
 
     const logEntry = `
@@ -28,6 +31,7 @@ app.get("/", async (req, res) => {
       System: ${data.system}
       Timezone: ${data.timeZone}
       IP Address: ${data.ipAddress}
+      client Ip: ${data.clientIpAddress}
       -----------------------------------
     `;
 
